@@ -33,7 +33,7 @@ def generate_users():
 
 
 # Loop over all clusters and find index of closest point to the cluster center and append to closest_pt_idx list.
-def find_radius(X, kmeans, weights):
+def get_base_detail(X, kmeans, weights):
     l = kmeans.n_clusters
     distances = np.empty(l)
     total_traffic = np.empty(l)
@@ -75,7 +75,7 @@ def cluster(X, weights, cluster_num):
 
     centers = kmeans.cluster_centers_
 
-    distances, total_traffic, base_users = find_radius(X, kmeans, weights)
+    distances, total_traffic, base_users = get_base_detail(X, kmeans, weights)
     inertia = kmeans.inertia_
     return y_kmeans, centers, distances, inertia, total_traffic, base_users
 
@@ -147,5 +147,5 @@ def base_station_generator(users, max_capacity, max_max_load, max_avg_load):
 
 
 # print(base_station_generator('[{"_index":0,"x":41.05274800055385,"y":28.951327050358923,"weight":72.0,"userID":"Usr-A00"},{"_index":1,"x":41.05094024657005,"y":28.95393095603621,"weight":90.0,"userID":"Usr-A01"},{"_index":2,"x":41.034172570749895,"y":28.9815821623627,"weight":12.0,"userID":"Usr-A02"},{"_index":3,"x":41.034386532370064,"y":28.983662906741742,"weight":77.0,"userID":"Usr-A03"},{"_index":4,"x":41.048419739031154,"y":28.953409555865615,"weight":63.0,"userID":"Usr-A04"},{"_index":5,"x":41.050533671297025,"y":28.9447935161235,"weight":19.0,"userID":"Usr-A05"},{"_index":6,"x":41.02833899642551,"y":28.972870147239185,"weight":67.0,"userID":"Usr-A06"},{"_index":7,"x":41.03897167855691,"y":28.961485187094834,"weight":79.0,"userID":"Usr-A07"},{"_index":8,"x":41.031482125734804,"y":28.963425268629674,"weight":75.0,"userID":"Usr-A08"},{"_index":9,"x":41.04844967075572,"y":28.943949438446005,"weight":87.0,"userID":"Usr-A09"}]'))
-# print(base_station_generator(new_users_json(30, True, "ITU")))
+# print(base_station_generator(new_users_json(50, True, "ITU"), 1100, 80, 80))
 # base_station_generator(new_users_json(50, True, "ITU"))
